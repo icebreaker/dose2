@@ -1,0 +1,64 @@
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>dose 2 by mfx</title>
+		<style type="text/css">
+		body
+		{
+			font-family: verdana, sans-serif, arial;
+			width: 640px;
+			margin: 0 auto;
+			margin-top: 150px;
+			padding: 0;
+		}
+
+		canvas
+		{
+			border: 0px none;
+			background-color: black;
+		}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="640" height="480" oncontextmenu="event.preventDefault()"></canvas>
+		<p>This is an&nbsp;<a target="_blank" href="https://emscripten.org/">emscripten</a>&nbsp;<em>port</em>&nbsp;of&nbsp;<a target="_blank" href="http://www.pouet.net/prod.php?which=3289">dose 2</a>&nbsp;by&nbsp;<a href="http://mfx.scene.org/">mfx</a>.</p>
+		<p>Source code:&nbsp;<a target="_blank" href="https://github.com/icebreaker/dose2">github</a></p>
+		<script type="text/javascript">
+		var Module = {
+			preRun: [],
+			postRun: [],
+			print: (function() {
+				return function(text) {
+					if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(" ");
+					console.log(text);
+				};
+			})(),
+			printErr: (function() {
+				return function(text) {
+					if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(" ");
+					console.log(text);
+				};
+			})(),
+			canvas: (function() {
+				var canvas = document.getElementById("canvas");
+				canvas.addEventListener("webglcontextlost", function(e) { alert("WebGL context lost. You will need to reload the page."); e.preventDefault(); }, false);
+				return canvas;
+			})(),
+			setStatus: function(text) {
+				if(!text) {
+					console.log("Loaded");
+				}
+				else {
+					console.log(text);
+				}
+			},
+			monitorRunDependencies: function(left) {
+				// nop
+			},
+			arguments: []
+		};
+		</script>
+		{{{ SCRIPT }}}
+	</body>
+</html>
