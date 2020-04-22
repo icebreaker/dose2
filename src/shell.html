@@ -17,10 +17,29 @@
 		{
 			border: 0px none;
 			background-color: black;
+			display: none;
+		}
+
+		button
+		{
+			background: #B90000;
+			display: block;
+			color: white;
+			padding: 20px;
+			font-size: 14px;
+			border: 0;
+			cursor: pointer;
+			text-align: center;
+			font-weight: bold;
+			width: 200px;
+			margin: 0 auto;
+			margin-top: 200px;
+			margin-bottom: 200px;
 		}
 		</style>
 	</head>
 	<body>
+		<button onclick="Module._play(this);">Play</button>
 		<canvas id="canvas" width="640" height="480" oncontextmenu="event.preventDefault()"></canvas>
 		<p>This is an&nbsp;<a target="_blank" href="https://emscripten.org/">emscripten</a>&nbsp;<em>port</em>&nbsp;of&nbsp;<a target="_blank" href="http://www.pouet.net/prod.php?which=3289">dose 2</a>&nbsp;by&nbsp;<a href="http://mfx.scene.org/">mfx</a>.</p>
 		<p>Source code:&nbsp;<a target="_blank" href="https://github.com/icebreaker/dose2">github</a></p>
@@ -56,9 +75,21 @@
 			monitorRunDependencies: function(left) {
 				// nop
 			},
-			arguments: []
+			arguments: [],
+			_play: function(button) {
+				button.style.display = "none";
+
+				var el = document.getElementById("canvas");
+				el.style.display = "block";
+
+				var el = document.createElement("script");
+				el.type = "text/javascript";
+				el.async = true;
+				el.src = "index.js";
+				document.body.append(el);
+			}
 		};
 		</script>
-		{{{ SCRIPT }}}
+		<!-- {{{ SCRIPT }}} -->
 	</body>
 </html>
